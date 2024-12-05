@@ -5,10 +5,14 @@ import argparse
 from rich.table import Table
 from rich.console import Console
 from rich.prompt import Prompt
+
 from .parser import Parser
 
-class SSHDataViewer:
+
+class SSHDataViewer(Parser):
     def __init__(self, data_file='~/.autossh/ssh_connections.json'):
+        super().__init__()
+        self.process_and_save()
         self.data_file = os.path.expanduser(data_file)
         self.console = Console()
         self.data = self.load_data()
@@ -197,7 +201,7 @@ class SSHDataViewer:
             # Prompt for user input
             action = Prompt.ask(
                 "\n[bold green]Options:[/bold green] [yellow]Search (s), Select (number), Shortcut (sc), Back (b), Quit (q)[/yellow]",
-                choices=["s", "b", "q", "sc"] + [str(i) for i in range(1, len(current_data) + 1)],
+                choices=["s", "b", "q", "sc"] + ['1','2','....'],
                 default="s"
             )
 

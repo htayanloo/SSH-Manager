@@ -1,7 +1,6 @@
 import os
 import re
 import json
-from collections import defaultdict
 
 class Parser(object):
     def __init__(self, bash_history_path='~/.bash_history', zsh_history_path='~/.zsh_history'):
@@ -14,13 +13,19 @@ class Parser(object):
         """
         Parse a line for SSH command, extract details, and categorize the type of connection.
         """
+        # Update the regex to handle `-p` both before and after the user@host pattern
         ssh_pattern = re.compile(
-            r'^\s*ssh(?:\s+-[^\s]+)*\s+(?:-p\s+(\d+)\s+)?(?:([^@]+)@)?((?:\d{1,3}\.){3}\d{1,3}|\w[\w\.-]*)'
+            r'^\s*ssh(?:\s+-p\s+(\d+))?\s+(?:([^@]+)@)?((?:\d{1,3}\.){3}\d{1,3}|\w[\w\.-]*)(?:\s+-p\s+(\d+))?'
         )
         match = ssh_pattern.search(line)
         if match:
-            port = match.group(1) if match.group(1) else '22'  # Default port is 22
-            username = match.group(2) if match.group(2) else 'root'  # Default username is root
+            # Match groups:
+            # Group 1: Port if specified before the user@host
+            # Group 2: Username
+            # Group 3: IP address or hostname
+            # Group 4: Port if specified after the user@host
+            port = match.group(1) or match.group(4) or '22'  # Default port is 22
+            username = match.group(2) or 'root'  # Default username is root
             ip = match.group(3)
             connection_type = self._categorize_connection(line)
             return username, ip, port, connection_type, line  # Include raw command
@@ -148,7 +153,7 @@ class Parser(object):
         with open(self.output_file, 'w') as file:
             json.dump(data, file, indent=4)
 
-        print(f"SSH connection data saved to {self.output_file}")
+        # print(f"SSH connection data saved to {self.output_file}")
 
     def process_and_save(self):
         """

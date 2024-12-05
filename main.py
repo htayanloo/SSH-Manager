@@ -1,4 +1,4 @@
-from autossh.parser import Parser
+from ssh_manager.parser import Parser
 
 
 def main():

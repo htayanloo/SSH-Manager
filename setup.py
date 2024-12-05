@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="ssh_manager",
-    version="1.0.0",
+    name="sshmgm",
+    version="1.0.1",
     description="A tool for parsing and displaying SSH connection history",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
