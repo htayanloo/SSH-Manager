@@ -1,0 +1,7 @@
+
+### 7. **Install the Package**
+
+Run the following command in the project directory to install the package locally:
+
+```bash
+pip install .
