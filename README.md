@@ -47,6 +47,8 @@
    ```
 
 ## Usage
+[![asciicast](https://asciinema.org/a/693545.svg)](https://asciinema.org/a/693545)
+
 
 ### Interactive Mode
 
