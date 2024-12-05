@@ -232,7 +232,6 @@ class SSHDataViewer(Parser):
 
             # Handle Selection
             elif action.isdigit():
-                print(action)
                 index = int(action) - 1
                 if 0 <= index < len(current_data):
                     selected_entry = current_data[index]
