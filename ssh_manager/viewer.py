@@ -201,8 +201,10 @@ class SSHDataViewer(Parser):
             # Prompt for user input
             action = Prompt.ask(
                 "\n[bold green]Options:[/bold green] [yellow]Search (s), Select (number), Shortcut (sc), Back (b), Quit (q)[/yellow]",
-                choices=["s", "b", "q", "sc"] + ['1','2','....'],
-                default="s"
+                choices=["s", "b", "q", "sc"] + [str(i) for i in range(1, len(current_data) + 1)],
+                default="s",
+                show_choices=False,
+
             )
 
             # Handle Quit
@@ -230,6 +232,7 @@ class SSHDataViewer(Parser):
 
             # Handle Selection
             elif action.isdigit():
+                print(action)
                 index = int(action) - 1
                 if 0 <= index < len(current_data):
                     selected_entry = current_data[index]
