@@ -1,0 +1,57 @@
+# Python bytecode and cache files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environment directory
+venv/
+.env/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Python egg metadata
+*.egg-info/
+.eggs/
+
+# Logs and runtime files
+*.log
+*.pid
+*.gz
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# Shell configuration backups
+.bashrc_backup
+.zshrc_backup
+
+# User-specific data
+~/.autossh/
+
+# Build artifacts
+dist/
+build/
+*.egg
+
+# IDE specific files
+.vscode/
+.idea/
+
+# Coverage reports
+htmlcov/
+.coverage
+.tox/
+
+# Distribution packages
+*.tar.gz
+*.zip
+
+# Environment variables
+.env.local
+.env.development
+.env.test
+.env.production
